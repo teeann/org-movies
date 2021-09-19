@@ -29,6 +29,8 @@
 ;; and quickly convert an IMDb movie URL into a Org-mode heading
 
 ;;; Code:
+(require 'org)
+(require 'request)
 
 (defgroup org-movies nil
   "Org watchlist management."
@@ -39,7 +41,7 @@
   :type 'string
   :group 'org-movies)
 
-(defun org-movies-genres-to-tags (genres)
+(defun org-movies--genres-to-tags (genres)
   "Convert GENRES to org genres."
   (concat
    ":"
@@ -61,7 +63,7 @@
 LEVEL specifies Org heading level."
   (let* ((title (alist-get 'Title info))
          (year (alist-get 'Year info))
-         (tags (org-movies-genres-to-tags (alist-get 'Genre info)))
+         (tags (org-movies--genres-to-tags (alist-get 'Genre info)))
          (heading (concat (make-string level ?*) " " title " " tags))
          (poster (alist-get 'Poster info))
          (director (alist-get 'Director info))
@@ -76,6 +78,7 @@ LEVEL specifies Org heading level."
 :END:
 " heading year added poster director)))
 
+;;;###autoload
 (cl-defun org-movies-from-url (url &optional (level 2))
   "Get movie org heading from URL.
 
@@ -131,5 +134,4 @@ LEVEL specifies Org heading level."
                              (insert (org-movies--format data)))))))))
 
 (provide 'org-movies)
-
 ;;; org-movies.el ends here
