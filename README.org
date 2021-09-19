@@ -5,11 +5,14 @@ Movie watchlist management using org-mode.
 ** Quickstart
 - First, get ~OMDb API key~ [[https://www.omdbapi.com/apikey.aspx][here]].
 - Set ~org-movies-api-key~ to your API key:
+
   #+BEGIN_SRC emacs-lisp
 (setq org-movies-api-key "YOUR_API_KEY")
   #+END_SRC
+
 - To import IMDb watchlist CSV file to an Org file, call ~org-movies-import-csv~
 - Use ~org-movies-from-url~ to integrate with ~org-capture~
+
   #+begin_src emacs-lisp
 (setq org-capture-templates
         '(("m" "Movie" entry

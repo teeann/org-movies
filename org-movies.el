@@ -96,6 +96,7 @@ LEVEL specifies Org heading level."
                   (setq org-node (org-movies--format data level)))))
     org-node))
 
+;;;###autoload
 (defun org-movies-add-url ()
   "Get movie Org heading from url and insert at point."
   (interactive)
@@ -114,6 +115,7 @@ LEVEL specifies Org heading level."
         (forward-line 1)))
     urls))
 
+;;;###autoload
 (defun org-movies-import-csv (f F)
   "Import IMDb watchlist to Org file."
   (interactive "fCSV file to import: \nFOrg file to export: ")
