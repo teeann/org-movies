@@ -57,7 +57,8 @@
   (string-match "\/title\/\\([a-z0-9]+\\)\/" url)
   (substring url (match-beginning 1) (match-end 1)))
 
-(cl-defun org-movies--format (info &optional (level 2))
+;;;###autoload
+(cl-defun org-movies-format (info &optional (level 2))
   "Get Org node from INFO alist of movie data.
 
 LEVEL specifies Org heading level."
@@ -96,7 +97,7 @@ LEVEL specifies Org heading level."
       :sync t
       :success (cl-function
                 (lambda (&key data &allow-other-keys)
-                  (setq org-node (org-movies--format data level)))))
+                  (setq org-node (org-movies-format data level)))))
     org-node))
 
 ;;;###autoload
@@ -131,7 +132,7 @@ LEVEL specifies Org heading level."
                :success (cl-function
                          (lambda (&key data &allow-other-keys)
                            (with-current-buffer (find-file F)
-                             (insert (org-movies--format data)))))))))
+                             (insert (org-movies-format data)))))))))
 
 (provide 'org-movies)
 ;;; org-movies.el ends here
