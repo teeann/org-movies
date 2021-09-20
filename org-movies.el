@@ -76,8 +76,9 @@ LEVEL specifies Org heading level."
 :ADDED: %s
 :POSTER: %s
 :DIRECTOR: %s
+:RATING: %s
 :END:
-" heading year added poster director)))
+" heading year added poster director rating)))
 
 ;;;###autoload
 (cl-defun org-movies-from-url (url &optional (level 2))
