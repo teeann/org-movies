@@ -121,10 +121,12 @@ LEVEL specifies Org heading level."
     urls))
 
 ;;;###autoload
-(defun org-movies-import-csv (f F)
-  "Import IMDb watchlist to Org file."
+(defun org-movies-import-csv (csv-file org-file)
+  "Import IMDb watchlist to Org file.
+
+CSV-FILE specifies the IMDb watchlist file, ORG-FILE specifies the Org file to export to."
   (interactive "fCSV file to import: \nFOrg file to export: ")
-  (let* ((urls (org-movies--get-urls-from-csv f)))
+  (let* ((urls (org-movies--get-urls-from-csv csv-file)))
     (cl-loop for url in urls do
              (request (format "https://www.omdbapi.com/?i=%s&apikey=%s"
                               (org-movies--get-imdb-id url)
@@ -132,7 +134,7 @@ LEVEL specifies Org heading level."
                :parser #'json-read
                :success (cl-function
                          (lambda (&key data &allow-other-keys)
-                           (with-current-buffer (find-file F)
+                           (with-current-buffer (find-file org-file)
                              (insert (org-movies-format data)))))))))
 
 (provide 'org-movies)
