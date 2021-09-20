@@ -104,7 +104,7 @@ LEVEL specifies Org heading level."
 (defun org-movies-add-url ()
   "Get movie Org heading from url and insert at point."
   (interactive)
-  (insert (call-interactively 'org-movies-from-url)))
+  (insert (call-interactively #'org-movies-from-url)))
 
 (defun org-movies--get-urls-from-csv (csv)
   "Get all urls from CSV file."
